@@ -1,18 +1,9 @@
-import Image from "next/image";
+import CustomImage from "./CustomImage";
 
 export default function BubbleImage({ src, size, className }) {
   return (
     <div className={`absolute ${className}`}>
-      <div className="relative block">
-        <Image
-          className="object-cover object-center"
-          src={src}
-          alt="bubbles-image"
-          quality={80}
-          width={size}
-          height={size}
-        />
-      </div>
+      <CustomImage src={src} alt="bubbles-image" width={size} height={size} />
     </div>
   );
 }

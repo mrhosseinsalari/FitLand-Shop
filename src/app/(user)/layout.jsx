@@ -1,6 +1,7 @@
 import BubbleImage from "@/ui/BubbleImage";
 import LogoImage from "@/ui/LogoImage";
 import MoveBack from "@/ui/MoveBack";
+import AuthBanner from "./_/components/AuthBanner";
 
 function Layout({ children }) {
   return (
@@ -16,11 +17,7 @@ function Layout({ children }) {
             <MoveBack />
           </div>
           <div className="flex flex-col gap-y-3 items-center mb-8 lg:hidden">
-            <LogoImage
-              src="/images/logo-images/Logo.png"
-              width={150}
-              height={32}
-            />
+            <LogoImage width={150} height={32} />
             <p className="text-neutral-600 text-xs">
               فروشگاه لوازم ورزشی فیت‌لند
             </p>
@@ -32,6 +29,9 @@ function Layout({ children }) {
           size={200}
           className="bottom-0 right-0"
         />
+      </div>
+      <div className="hidden lg:block col-span-5 min-h-screen">
+        <AuthBanner />
       </div>
     </div>
   );

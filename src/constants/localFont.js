@@ -18,6 +18,11 @@ const vazirFont = LocalFont({
       style: "normal",
     },
     {
+      path: "../../public/fonts/vazirmatn/Vazirmatn-SemiBold.woff2",
+      weight: "600",
+      style: "normal",
+    },
+    {
       path: "../../public/fonts/vazirmatn/Vazirmatn-Bold.woff2",
       weight: "700",
       style: "normal",

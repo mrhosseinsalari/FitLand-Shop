@@ -1,19 +1,15 @@
-import Image from "next/image";
 import Link from "next/link";
+import CustomImage from "./CustomImage";
 
-export default function LogoImage({ src, width, height }) {
+export default function LogoImage({ width, height }) {
   return (
     <Link href="/">
-      <div className="relative block">
-        <Image
-          className="object-cover object-center"
-          src={src}
-          alt="Logo"
-          quality={80}
-          width={width}
-          height={height}
-        />
-      </div>
+      <CustomImage
+        src="/images/logo-images/Logo.png"
+        alt="Logo"
+        width={width}
+        height={height}
+      />
     </Link>
   );
 }

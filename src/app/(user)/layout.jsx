@@ -12,7 +12,7 @@ function Layout({ children }) {
           size={200}
           className="top-0 left-0"
         />
-        <div className="max-w-md mx-auto px-4 mb-10 lg:mb-0">
+        <div className="max-w-md lg:max-w-lg mx-auto px-4 mb-10 lg:mb-0">
           <div className="flex justify-between items-center mt-3 mb-24 lg:hidden">
             <MoveBack />
           </div>

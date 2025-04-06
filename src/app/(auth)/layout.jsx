@@ -1,7 +1,7 @@
 import BubbleImage from "@/ui/BubbleImage";
 import LogoImage from "@/ui/LogoImage";
 import MoveBack from "@/ui/MoveBack";
-import AuthBanner from "./_/components/AuthBanner";
+import AuthBanner from "./_components/AuthBanner";
 
 function Layout({ children }) {
   return (

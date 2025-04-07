@@ -60,6 +60,9 @@
     px-4 py-3 hover:border-neutral-800 focus:border-neutral-800 transition-all 
     duration-300 ease-out focus:shadow-lg focus:shadow-neutral-300;
   }
+  .textField--invalid {
+    @apply bg-[#ffebe9] text-error-800 !border-error-800 focus:shadow-red-100;
+  }
   .btn {
     @apply px-2 py-3 rounded-lg font-medium transition-all duration-300;
   }

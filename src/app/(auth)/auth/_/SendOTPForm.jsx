@@ -1,14 +1,13 @@
-import TextField from "@/ui/TextField";
+import RHFTextField from "@/ui/RHFTextField";
 
 export default function SendOTPForm({ phoneNumber, onChange }) {
   return (
     <form className="space-y-8">
-      <TextField
+      <RHFTextField
         label="لطفا شماره موبایل خود را وارد کنید"
         name="phoneNumber"
         placeholder="********۰۹"
-        value={phoneNumber}
-        onChange={onChange}
+        register={() => {}}
       />
       <button type="submit" className="btn btn--primary w-full">
         ادامه

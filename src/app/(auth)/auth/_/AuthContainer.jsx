@@ -1,13 +1,38 @@
 "use client";
 
-import { useState } from "react";
+import { getOtp } from "@/services/authService";
 import SendOTPForm from "./SendOTPForm";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useForm } from "react-hook-form";
+import * as yup from "yup";
+import toast from "react-hot-toast";
+
+const phoneRegExp = /^[0][9][0-9][0-9]{8,8}$/;
+
+const schema = yup
+  .object({
+    phoneNumber: yup
+      .string()
+      .matches(phoneRegExp, "لطفا شماره همراه خود را به صورت صحیح وارد نمایید"),
+  })
+  .required();
 
 export default function AuthContainer() {
-  const [phoneNumber, setPhoneNumber] = useState("");
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
 
-  const phoneNumberHandler = (e) => {
-    setPhoneNumber(e.target.value);
+  const sendOTPHandler = async (data) => {
+    try {
+      const { message } = await getOtp(data);
+      toast.success(message);
+    } catch (error) {
+      toast.error(error?.response?.data?.message);
+    }
   };
 
   return (
@@ -15,7 +40,11 @@ export default function AuthContainer() {
       <h2 className="text-lg mb-8 font-semibold lg:text-2xl lg:font-medium">
         ورود | ثبت‌نام
       </h2>
-      <SendOTPForm phoneNumber={phoneNumber} onChange={phoneNumberHandler} />
+      <SendOTPForm
+        onSubmit={handleSubmit(sendOTPHandler)}
+        register={register}
+        errors={errors}
+      />
     </div>
   );
 }

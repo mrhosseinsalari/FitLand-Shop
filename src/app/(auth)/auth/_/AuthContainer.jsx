@@ -1,11 +1,12 @@
 "use client";
 
-import { getOtp } from "@/services/authService";
+import { getOtpApi } from "@/services/authService";
 import SendOTPForm from "./SendOTPForm";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import toast from "react-hot-toast";
+import { useMutation } from "@tanstack/react-query";
 
 const phoneRegExp = /^[0][9][0-9][0-9]{8,8}$/;
 
@@ -26,9 +27,17 @@ export default function AuthContainer() {
     resolver: yupResolver(schema),
   });
 
+  const {
+    isPending: isSendingOtp,
+    mutateAsync,
+    data: otpResponse,
+  } = useMutation({
+    mutationFn: getOtpApi,
+  });
+
   const sendOTPHandler = async (data) => {
     try {
-      const { message } = await getOtp(data);
+      const { message } = await mutateAsync(data);
       toast.success(message);
     } catch (error) {
       toast.error(error?.response?.data?.message);
@@ -44,6 +53,7 @@ export default function AuthContainer() {
         onSubmit={handleSubmit(sendOTPHandler)}
         register={register}
         errors={errors}
+        isSendingOtp={isSendingOtp}
       />
     </div>
   );

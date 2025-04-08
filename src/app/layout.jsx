@@ -1,6 +1,7 @@
 import "@/styles/globals.css";
 import vazirFont from "@/constants/localFont";
 import { Toaster } from "react-hot-toast";
+import ReactQueryProvider from "@/providers/ReactQueryProvider";
 
 export const metadata = {
   title: {
@@ -15,7 +16,7 @@ export default function RootLayout({ children }) {
     <html lang="fa" dir="rtl">
       <body className={`${vazirFont.variable} font-sans min-h-screen`}>
         <Toaster />
-        {children}
+        <ReactQueryProvider>{children}</ReactQueryProvider>
       </body>
     </html>
   );

@@ -1,18 +1,30 @@
+import Loading from "@/ui/Loading";
 import RHFTextField from "@/ui/RHFTextField";
 
-export default function SendOTPForm({ onSubmit, register, errors }) {
+export default function SendOTPForm({
+  onSubmit,
+  register,
+  errors,
+  isSendingOtp,
+}) {
   return (
     <form className="space-y-8" onSubmit={onSubmit}>
       <RHFTextField
         label="لطفا شماره موبایل خود را وارد کنید"
         name="phoneNumber"
-        placeholder="********۰۹"
+        placeholder="*********۰۹"
         register={register}
         errors={errors}
       />
-      <button type="submit" className="btn btn--primary w-full">
-        ارسال کد تایید
-      </button>
+      <div>
+        {isSendingOtp ? (
+          <Loading />
+        ) : (
+          <button type="submit" className="btn btn--primary w-full">
+            ارسال کد تایید
+          </button>
+        )}
+      </div>
     </form>
   );
 }

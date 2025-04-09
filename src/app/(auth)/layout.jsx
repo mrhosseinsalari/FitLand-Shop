@@ -1,6 +1,6 @@
 import BubbleImage from "@/ui/BubbleImage";
 import LogoImage from "@/ui/LogoImage";
-import MoveBack from "@/ui/MoveBack";
+import MoveBackBtn from "@/ui/MoveBackBtn";
 import AuthBanner from "./_components/AuthBanner";
 
 function Layout({ children }) {
@@ -14,7 +14,7 @@ function Layout({ children }) {
         />
         <div className="max-w-md lg:max-w-lg mx-auto px-4 mb-10 lg:mb-0">
           <div className="flex justify-between items-center mt-3 mb-24 lg:hidden">
-            <MoveBack />
+            <MoveBackBtn size={32} color="#717171" />
           </div>
           <div className="flex flex-col gap-y-3 items-center mb-8 lg:hidden">
             <LogoImage width={150} height={32} />

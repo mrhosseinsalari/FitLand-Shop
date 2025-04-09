@@ -69,6 +69,9 @@
   .btn--primary {
     @apply bg-primary-main hover:bg-primary-600 text-white;
   }
+  .authForm__title {
+    @apply text-lg mb-8 font-semibold lg:text-2xl lg:font-medium;
+  }
 }
 
 * {

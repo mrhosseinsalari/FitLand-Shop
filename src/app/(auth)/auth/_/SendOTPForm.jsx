@@ -18,15 +18,13 @@ export default function SendOTPForm({
           register={register}
           errors={errors}
         />
-        <div>
-          {isSendingOtp ? (
-            <Loading />
-          ) : (
-            <button type="submit" className="btn btn--primary w-full">
-              ارسال کد تایید
-            </button>
-          )}
-        </div>
+        {isSendingOtp ? (
+          <Loading />
+        ) : (
+          <button type="submit" className="btn btn--primary w-full">
+            ارسال کد تایید
+          </button>
+        )}
       </form>
     </div>
   );

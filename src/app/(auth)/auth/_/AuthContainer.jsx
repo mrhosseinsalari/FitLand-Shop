@@ -8,7 +8,8 @@ import * as yup from "yup";
 import toast from "react-hot-toast";
 import { useMutation } from "@tanstack/react-query";
 import CheckOTPForm from "./CheckOTPForm";
-import MoveBackBtn from "@/ui/MoveBackBtn";
+import { useState } from "react";
+import ResendOTPTimer from "./ResendOTPTimer";
 
 const phoneRegExp = /^[0][9][0-9][0-9]{8,8}$/;
 
@@ -21,9 +22,12 @@ const schema = yup
   .required();
 
 export default function AuthContainer() {
+  const [step, setStep] = useState(1);
+
   const {
     register,
     handleSubmit,
+    getValues,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
@@ -31,35 +35,53 @@ export default function AuthContainer() {
 
   const {
     isPending: isSendingOtp,
-    mutateAsync,
+    mutateAsync: getOtp,
     data: otpResponse,
   } = useMutation({
     mutationFn: getOtpApi,
   });
 
-  const sendOTPHandler = async (data) => {
+  const sendOtpHandler = async (data) => {
     try {
-      const { message } = await mutateAsync(data);
+      const { message } = await getOtp(data);
       toast.success(message);
+      setStep(2);
     } catch (error) {
       toast.error(error?.response?.data?.message);
     }
   };
 
+  const renderSteps = () => {
+    switch (step) {
+      case 1:
+        return (
+          <SendOTPForm
+            onSubmit={handleSubmit(sendOtpHandler)}
+            register={register}
+            errors={errors}
+            isSendingOtp={isSendingOtp}
+          />
+        );
+      case 2:
+        return (
+          <CheckOTPForm
+            phoneNumber={getValues("phoneNumber")}
+            onBack={() => setStep((s) => s - 1)}
+          >
+            <ResendOTPTimer
+              otpResponse={otpResponse}
+              onReSendOtp={sendOtpHandler}
+            />
+          </CheckOTPForm>
+        );
+      default:
+        return null;
+    }
+  };
+
   return (
     <div className="w-full border-2 border-neutral-200 py-8 px-6 lg:px-8 rounded-lg">
-      {/* <SendOTPForm
-        onSubmit={handleSubmit(sendOTPHandler)}
-        register={register}
-        errors={errors}
-        isSendingOtp={isSendingOtp}
-      /> */}
-      <CheckOTPForm />
-      <div className="hidden lg:block mt-6">
-        <MoveBackBtn size={24} color="var(--color-neutral-800)">
-          <span className="font-semibold text-neutral-800">صفحه قبلی</span>
-        </MoveBackBtn>
-      </div>
+      {renderSteps()}
     </div>
   );
 }

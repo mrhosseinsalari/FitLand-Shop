@@ -99,9 +99,9 @@ button {
 }
 button:disabled {
   cursor: not-allowed;
-  background-color: var(--color-secondary-300);
-  color: var(--color-secondary-700);
-  opacity: 0.5;
+  /* background-color: var(--color-secondary-300); */
+  /* color: var(--color-secondary-700); */
+  /* opacity: 0.5; */
   pointer-events: none;
   box-shadow: none;
 }

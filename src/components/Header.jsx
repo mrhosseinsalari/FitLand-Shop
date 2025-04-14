@@ -1,9 +1,16 @@
+"use client";
+
+import useGetUser from "@/hooks/useGetUser";
 import Link from "next/link";
 
 function Header() {
+  const { user, isLoading, cart } = useGetUser();
+
   return (
     <header
-      className={`shadow-md mb-10 sticky top-0 transition-all duration-200 bg-white`}
+      className={`shadow-md mb-10 sticky top-0 transition-all duration-200 ${
+        isLoading ? "blur-sm opacity-70" : "opacity-100 blur-none"
+      }`}
     >
       <nav>
         <ul className="flex items-center justify-between py-2 container xl:max-w-screen-xl">
@@ -17,7 +24,7 @@ function Header() {
               محصولات
             </Link>
           </li>
-          <li>
+          {/* <li>
             <Link className="block py-2" href="/profile">
               پنل کاربر
             </Link>
@@ -26,16 +33,20 @@ function Header() {
             <Link className="block py-2" href="/admin">
               پنل ادمین
             </Link>
-          </li>
+          </li> */}
           <li>
             <Link className="block py-2" href="/cart">
-              سبد خرید
+              سبد خرید ({cart ? cart.payDetail.productIds.length : 0})
             </Link>
           </li>
           <li>
-            <Link className="block py-2" href="/auth">
-              ورود
-            </Link>
+            {user ? (
+              <span>{user?.name}</span>
+            ) : (
+              <Link className="block py-2" href="/auth">
+                ورود
+              </Link>
+            )}
           </li>
         </ul>
       </nav>

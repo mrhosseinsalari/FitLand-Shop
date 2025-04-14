@@ -3,11 +3,13 @@ import CustomOtpInput from "@/ui/CustomOtpInput";
 import Loading from "@/ui/Loading";
 import MoveBackBtn from "@/ui/MoveBackBtn";
 import { useMutation } from "@tanstack/react-query";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import toast from "react-hot-toast";
 
 export default function CheckOTPForm({ phoneNumber, onBack, children }) {
   const [otp, setOtp] = useState("");
+  const router = useRouter();
 
   const { isPending, mutateAsync: checkOtp } = useMutation({
     mutationFn: checkOtpApi,
@@ -16,8 +18,14 @@ export default function CheckOTPForm({ phoneNumber, onBack, children }) {
   const checkOtpHandler = async (e) => {
     e.preventDefault();
     try {
-      const { message } = await checkOtp({ phoneNumber, otp });
+      const { message, user } = await checkOtp({ phoneNumber, otp });
       toast.success(message);
+
+      if (user.isActive) {
+        router.push("/");
+      } else {
+        router.push("/complete-profile");
+      }
     } catch (error) {
       toast.error(error?.response?.data?.message);
     }
@@ -26,7 +34,7 @@ export default function CheckOTPForm({ phoneNumber, onBack, children }) {
   return (
     <div>
       <h2 className="authForm__title">کد تایید را وارد کنید</h2>
-      <form className="space-y-8" onSubmit={checkOtpHandler}>
+      <form className="space-y-6" onSubmit={checkOtpHandler}>
         <CustomOtpInput value={otp} onChange={setOtp} />
         {children}
         {isPending ? (
@@ -38,11 +46,7 @@ export default function CheckOTPForm({ phoneNumber, onBack, children }) {
         )}
       </form>
       <div className="mt-6">
-        <MoveBackBtn
-          size={24}
-          color="var(--color-neutral-800)"
-          onClick={onBack}
-        >
+        <MoveBackBtn onClick={onBack}>
           <span className="font-semibold text-neutral-800">مرحله قبلی</span>
         </MoveBackBtn>
       </div>

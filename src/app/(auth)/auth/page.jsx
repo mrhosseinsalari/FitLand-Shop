@@ -1,4 +1,4 @@
-import AuthContainer from "./_/AuthContainer";
+import AuthContainer from "./_components/AuthContainer";
 
 export const metadata = {
   title: "ورود / ثبت نام",

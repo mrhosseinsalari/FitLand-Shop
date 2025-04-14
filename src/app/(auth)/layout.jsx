@@ -13,7 +13,7 @@ function Layout({ children }) {
           className="top-0 left-0"
         />
         <div className="max-w-md lg:max-w-lg mx-auto px-4 mb-10 lg:mb-0">
-          <div className="flex justify-between items-center mt-3 mb-24 lg:hidden">
+          <div className="flex justify-between items-center mt-3 mb-10 lg:hidden">
             <MoveBackBtn size={32} color="#717171" />
           </div>
           <div className="flex flex-col gap-y-3 items-center mb-8 lg:hidden">
@@ -22,7 +22,11 @@ function Layout({ children }) {
               فروشگاه لوازم ورزشی فیت‌لند
             </p>
           </div>
-          <div className="flex lg:items-center lg:min-h-screen">{children}</div>
+          <div className="flex lg:items-center lg:min-h-screen">
+            <div className="w-full border-2 border-neutral-200 py-8 px-6 lg:px-8 rounded-lg z-10 bg-neutral-white">
+              {children}
+            </div>
+          </div>
         </div>
         <BubbleImage
           src="/images/auth-images/Bubbles-2.png"

@@ -3,7 +3,12 @@
 import useMoveBack from "@/hooks/useMoveBack";
 import { ArrowRight } from "iconsax-react";
 
-export default function MoveBackBtn({ size, color, children, onClick }) {
+export default function MoveBackBtn({
+  size = 24,
+  color = "var(--color-neutral-800)",
+  children,
+  onClick,
+}) {
   const moveBack = useMoveBack();
 
   return (

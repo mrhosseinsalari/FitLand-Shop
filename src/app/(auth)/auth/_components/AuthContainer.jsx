@@ -79,9 +79,5 @@ export default function AuthContainer() {
     }
   };
 
-  return (
-    <div className="w-full border-2 border-neutral-200 py-8 px-6 lg:px-8 rounded-lg">
-      {renderSteps()}
-    </div>
-  );
+  return renderSteps();
 }

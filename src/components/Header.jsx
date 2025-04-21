@@ -24,7 +24,7 @@ function Header() {
               محصولات
             </Link>
           </li>
-          {/* <li>
+          <li>
             <Link className="block py-2" href="/profile">
               پنل کاربر
             </Link>
@@ -33,7 +33,7 @@ function Header() {
             <Link className="block py-2" href="/admin">
               پنل ادمین
             </Link>
-          </li> */}
+          </li>
           <li>
             <Link className="block py-2" href="/cart">
               سبد خرید ({cart ? cart.payDetail.productIds.length : 0})

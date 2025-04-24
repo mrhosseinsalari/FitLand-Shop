@@ -47,6 +47,8 @@
   --color-neutral-200: rgb(237, 237, 237);
   --color-neutral-100: rgb(249, 249, 249);
   --color-neutral-white: rgb(255, 255, 255);
+
+  --shadow-custom: 0 0 10px 4px rgba(0, 0, 0, 0.06);
 }
 
 @utility container {

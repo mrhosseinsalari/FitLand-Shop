@@ -1,5 +1,6 @@
 import Header from "./_components/Header";
 import React from "react";
+import Navbar from "./_components/Navbar";
 
 function Layout({ children }) {
   return (
@@ -10,6 +11,7 @@ function Layout({ children }) {
         </p>
       </div>
       <Header />
+      <Navbar />
       <div className="container xl:max-w-screen-xl">{children}</div>
     </>
   );

@@ -1,7 +1,8 @@
 import { NextResponse } from "next/server";
+import type { NextRequest } from "next/server";
 import { middlewareAuth } from "./utils/middlewareAuth";
 
-export async function middleware(req) {
+export async function middleware(req: NextRequest): Promise<NextResponse | void> {
   const url = req.url;
   const { pathname } = req.nextUrl;
 

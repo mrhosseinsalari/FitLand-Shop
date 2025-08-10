@@ -1,8 +1,10 @@
-export default function setCookiesOnReq(cookies) {
+import type { RequestCookies } from "next/dist/compiled/@edge-runtime/cookies";
+
+export default function setCookiesOnReq(cookies: RequestCookies): RequestInit {
   const accessToken = cookies.get("accessToken");
   const refreshToken = cookies.get("refreshToken");
 
-  const options = {
+  const options: RequestInit = {
     method: "GET",
     credentials: "include",
     headers: {

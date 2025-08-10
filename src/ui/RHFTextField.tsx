@@ -1,4 +1,7 @@
-export default function RHFTextField({
+import { FieldValues } from "react-hook-form";
+import { RHFInputProps } from "types/RHFInput";
+
+export default function RHFTextField<TFieldValues extends FieldValues>({
   type = "text",
   label,
   name,
@@ -9,7 +12,7 @@ export default function RHFTextField({
   required,
   validationSchema = {},
   ...rest
-}) {
+}: RHFInputProps<TFieldValues>) {
   const hasError = errors && errors[name];
 
   return (
@@ -23,7 +26,6 @@ export default function RHFTextField({
         className={`textField__input ${hasError ? "textField--invalid" : ""} ${
           dir === "ltr" ? "text-left" : "text-right"
         }`}
-        name={name}
         id={name}
         dir={dir}
         placeholder={placeholder}
@@ -32,7 +34,7 @@ export default function RHFTextField({
       />
       {hasError && (
         <span className="text-error-800 block text-sm mt-2">
-          {errors[name]?.message}
+          {String(errors[name]?.message)}
         </span>
       )}
     </div>

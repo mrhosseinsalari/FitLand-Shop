@@ -1,7 +1,8 @@
 import { SearchNormal1 } from "iconsax-react";
+import { FormEvent } from "react";
 
 export default function Search() {
-  const formSubmit = (e) => {
+  const formSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
   };
 

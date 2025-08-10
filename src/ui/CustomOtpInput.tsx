@@ -1,12 +1,20 @@
 import OTPInput from "react-otp-input";
 
-export default function CustomOtpInput({ value, onChange }) {
+type CustomOtpInputProps = {
+  value?: string;
+  onChange: (otp: string) => void;
+};
+
+export default function CustomOtpInput({
+  value,
+  onChange,
+}: CustomOtpInputProps) {
   return (
     <OTPInput
       value={value}
       onChange={onChange}
       numInputs={6}
-      renderInput={(props) => <input type="number" {...props} />}
+      renderInput={(props) => <input {...props} type="number" />}
       shouldAutoFocus
       containerStyle="flex flex-row-reverse gap-x-2 justify-center"
       inputStyle={{

@@ -10,7 +10,7 @@ NProgress.configure({
   minimum: 0.1,
 });
 
-export default function ProgressBar({ isLoading }) {
+export default function ProgressBar({ isLoading }: { isLoading: boolean }) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 

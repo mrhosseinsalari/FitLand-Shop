@@ -3,7 +3,11 @@
 import ReactQueryProvider from "./ReactQueryProvider";
 import UserProvider from "./UserProvider";
 
-export default function AppProviders({ children }) {
+type AppProviderProps = {
+  children: React.ReactNode;
+};
+
+export default function AppProviders({ children }: AppProviderProps) {
   return (
     <ReactQueryProvider>
       <UserProvider>{children}</UserProvider>

@@ -2,14 +2,14 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ReactNode } from "react";
+import { FC, ReactNode } from "react";
 
 type NavLinkProps = {
   path: string;
   children: ReactNode;
 };
 
-function NavLink({ path, children }: NavLinkProps) {
+const NavLink: FC<NavLinkProps> = ({ path, children }) => {
   const pathname = usePathname();
 
   return (
@@ -23,6 +23,6 @@ function NavLink({ path, children }: NavLinkProps) {
       {children}
     </Link>
   );
-}
+};
 
 export default NavLink;

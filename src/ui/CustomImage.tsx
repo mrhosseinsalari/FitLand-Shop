@@ -1,5 +1,6 @@
 import { StaticImport } from "next/dist/shared/lib/get-img-props";
 import Image from "next/image";
+import { FC } from "react";
 
 type CustomImageProps = {
   className?: string;
@@ -10,14 +11,14 @@ type CustomImageProps = {
   fill?: boolean;
 };
 
-export default function CustomImage({
+const CustomImage: FC<CustomImageProps> = ({
   src,
   alt,
   width,
   height,
   className = "",
   fill,
-}: CustomImageProps) {
+}) => {
   return (
     <div className={`relative block ${className}`}>
       <Image
@@ -31,4 +32,6 @@ export default function CustomImage({
       />
     </div>
   );
-}
+};
+
+export default CustomImage;

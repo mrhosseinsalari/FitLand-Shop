@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { FC, useEffect } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
 import NProgress from "nprogress";
 
@@ -10,7 +10,9 @@ NProgress.configure({
   minimum: 0.1,
 });
 
-export default function ProgressBar({ isLoading }: { isLoading: boolean }) {
+type ProgressBarProps = { isLoading: boolean };
+
+const ProgressBar: FC<ProgressBarProps> = ({ isLoading }) => {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
@@ -31,4 +33,6 @@ export default function ProgressBar({ isLoading }: { isLoading: boolean }) {
   }, [isLoading]);
 
   return null;
-}
+};
+
+export default ProgressBar;

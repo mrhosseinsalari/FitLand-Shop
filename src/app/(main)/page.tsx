@@ -1,7 +1,11 @@
+import { FC } from "react";
+
 export const metadata = {
   title: "فروشگاه لوازم ورزشی فیت‌لند",
 };
 
-export default function Home() {
+const Home: FC = () => {
   return <main className="text-3xl">صفحه خانه</main>;
-}
+};
+
+export default Home;

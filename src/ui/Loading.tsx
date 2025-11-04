@@ -1,3 +1,4 @@
+import { FC } from "react";
 import { ThreeDots } from "react-loader-spinner";
 
 type LoadingProps = {
@@ -5,7 +6,7 @@ type LoadingProps = {
   width?: string | number;
 };
 
-function Loading({ width = "75", height = "40" }: LoadingProps) {
+const Loading: FC<LoadingProps> = ({ width = "75", height = "40" }) => {
   return (
     <ThreeDots
       height={height}
@@ -19,6 +20,6 @@ function Loading({ width = "75", height = "40" }: LoadingProps) {
       }}
     />
   );
-}
+};
 
 export default Loading;

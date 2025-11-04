@@ -1,3 +1,4 @@
+import { FC } from "react";
 import OTPInput from "react-otp-input";
 
 type CustomOtpInputProps = {
@@ -5,10 +6,7 @@ type CustomOtpInputProps = {
   onChange: (otp: string) => void;
 };
 
-export default function CustomOtpInput({
-  value,
-  onChange,
-}: CustomOtpInputProps) {
+const CustomOtpInput: FC<CustomOtpInputProps> = ({ value, onChange }) => {
   return (
     <OTPInput
       value={value}
@@ -28,4 +26,6 @@ export default function CustomOtpInput({
       }}
     />
   );
-}
+};
+
+export default CustomOtpInput;

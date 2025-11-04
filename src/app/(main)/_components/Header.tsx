@@ -6,8 +6,9 @@ import Search from "@/ui/Search";
 import UserAccountButton from "./UserAccountButton";
 import CartButton from "./CartButton";
 import { HambergerMenu } from "iconsax-react";
+import { FC } from "react";
 
-function Header() {
+const Header: FC = () => {
   const { user, isLoading, cart } = useGetUser();
 
   return (
@@ -50,6 +51,6 @@ function Header() {
       </div>
     </header>
   );
-}
+};
 
 export default Header;

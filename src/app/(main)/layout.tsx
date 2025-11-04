@@ -1,8 +1,10 @@
 import Header from "./_components/Header";
-import React, { ReactNode } from "react";
+import React, { FC, ReactNode } from "react";
 import Navbar from "./_components/Navbar";
 
-function Layout({ children }: { children: ReactNode }) {
+type LayoutProps = { children: ReactNode };
+
+const Layout: FC<LayoutProps> = ({ children }) => {
   return (
     <>
       <div className="h-10 bg-secondary-main text-neutral-white flex justify-center items-center mb-10">
@@ -15,6 +17,6 @@ function Layout({ children }: { children: ReactNode }) {
       <div className="container xl:max-w-screen-xl">{children}</div>
     </>
   );
-}
+};
 
 export default Layout;

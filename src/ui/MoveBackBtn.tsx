@@ -2,19 +2,19 @@
 
 import useMoveBack from "@/hooks/useMoveBack";
 import { ArrowRight } from "iconsax-react";
-import { ComponentProps } from "react";
+import { ComponentProps, FC } from "react";
 
 type MoveBackBtnProps = {
   size?: number;
   color?: string;
 } & ComponentProps<"button">;
 
-export default function MoveBackBtn({
+const MoveBackBtn: FC<MoveBackBtnProps> = ({
   size = 24,
   color = "var(--color-neutral-800)",
   children,
   onClick,
-}: MoveBackBtnProps) {
+}) => {
   const moveBack = useMoveBack();
 
   return (
@@ -26,4 +26,6 @@ export default function MoveBackBtn({
       {children}
     </button>
   );
-}
+};
+
+export default MoveBackBtn;

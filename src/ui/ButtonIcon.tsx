@@ -1,4 +1,4 @@
-import { ComponentProps } from "react";
+import { ComponentProps, FC } from "react";
 
 const btnType = {
   primary:
@@ -11,12 +11,12 @@ type ButtonIconProps = {
   variant: "primary" | "neutral";
 } & ComponentProps<"button">;
 
-function ButtonIcon({
+const ButtonIcon: FC<ButtonIconProps> = ({
   children,
   className,
   variant,
   ...rest
-}: ButtonIconProps) {
+}) => {
   return (
     <button
       className={`${btnType[variant]} ${className} flex items-center justify-center 
@@ -27,6 +27,6 @@ function ButtonIcon({
       {children}
     </button>
   );
-}
+};
 
 export default ButtonIcon;

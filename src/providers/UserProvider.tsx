@@ -2,12 +2,13 @@
 
 import ProgressBar from "@/ui/ProgressBar";
 import useGetUser from "@/hooks/useGetUser";
+import { FC } from "react";
 
 type UserProviderProps = {
   children: React.ReactNode;
 };
 
-export default function UserProvider({ children }: UserProviderProps) {
+const UserProvider: FC<UserProviderProps> = ({ children }) => {
   const { isLoading } = useGetUser();
 
   return (
@@ -16,4 +17,6 @@ export default function UserProvider({ children }: UserProviderProps) {
       {children}
     </>
   );
-}
+};
+
+export default UserProvider;

@@ -2,7 +2,7 @@ import "@/styles/globals.css";
 import vazirFont from "@/constants/localFont";
 import AppProviders from "@/providers/AppProviders";
 import { Toaster } from "react-hot-toast";
-import { ReactNode } from "react";
+import { FC, ReactNode } from "react";
 
 export const metadata = {
   title: {
@@ -12,7 +12,9 @@ export const metadata = {
   description: "فروشگاه لوازم ورزشی فیت‌لند",
 };
 
-export default function RootLayout({ children }: { children: ReactNode }) {
+type RootLayoutProps = { children: ReactNode };
+
+const RootLayout: FC<RootLayoutProps> = ({ children }) => {
   return (
     <html lang="fa" dir="rtl">
       <body className={`${vazirFont.variable} font-sans min-h-screen`}>
@@ -21,4 +23,6 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       </body>
     </html>
   );
-}
+};
+
+export default RootLayout;

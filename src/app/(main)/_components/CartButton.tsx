@@ -2,8 +2,11 @@ import { Cart } from "@/types/Cart";
 import ButtonIcon from "@/ui/ButtonIcon";
 import { toPersianDigits } from "@/utils/numberFormatter";
 import { Bag2 } from "iconsax-react";
+import { FC } from "react";
 
-export default function CartButton({ cart }: { cart: Cart }) {
+type CartButtonProps = { cart: Cart };
+
+const CartButton: FC<CartButtonProps> = ({ cart }) => {
   return (
     <div className="relative">
       <div
@@ -17,4 +20,6 @@ export default function CartButton({ cart }: { cart: Cart }) {
       </ButtonIcon>
     </div>
   );
-}
+};
+
+export default CartButton;

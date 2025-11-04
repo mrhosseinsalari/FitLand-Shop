@@ -1,5 +1,6 @@
 import { Flash, MedalStar, Star1 } from "iconsax-react";
 import NavLink from "./NavLink";
+import { FC } from "react";
 
 const categoryNavLinks = [
   {
@@ -50,7 +51,7 @@ const productNavLinks = [
   },
 ];
 
-export default function Navbar() {
+const Navbar: FC = () => {
   return (
     <nav className="container xl:max-w-screen-xl bg-neutral-100 px-9 rounded-2xl mb-8">
       <ul className="flex items-center justify-between text-neutral-black py-3">
@@ -78,4 +79,6 @@ export default function Navbar() {
       </ul>
     </nav>
   );
-}
+};
+
+export default Navbar;

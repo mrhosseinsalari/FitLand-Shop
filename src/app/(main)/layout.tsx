@@ -1,8 +1,8 @@
 import Header from "./_components/Header";
-import React from "react";
+import React, { ReactNode } from "react";
 import Navbar from "./_components/Navbar";
 
-function Layout({ children }) {
+function Layout({ children }: { children: ReactNode }) {
   return (
     <>
       <div className="h-10 bg-secondary-main text-neutral-white flex justify-center items-center mb-10">

@@ -1,9 +1,10 @@
 import ButtonIcon from "@/ui/ButtonIcon";
-import { ArrowDown2, LoginCurve, User } from "iconsax-react";
+import { ArrowDown2, LoginCurve, User as UserIcon } from "iconsax-react";
 import { useRouter } from "next/navigation";
 import { Fragment } from "react";
+import { User } from "@/types/User";
 
-export default function UserAccountButton({ user }) {
+export default function UserAccountButton({ user }: { user: User }) {
   const router = useRouter();
 
   const handleClick = () => {
@@ -21,7 +22,7 @@ export default function UserAccountButton({ user }) {
     >
       {user ? (
         <Fragment>
-          <User />
+          <UserIcon />
           <ArrowDown2 className="stroke-primary-main w-4 h-4" />
         </Fragment>
       ) : (

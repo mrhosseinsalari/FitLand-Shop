@@ -1,8 +1,9 @@
+import { Cart } from "@/types/Cart";
 import ButtonIcon from "@/ui/ButtonIcon";
 import { toPersianDigits } from "@/utils/numberFormatter";
 import { Bag2 } from "iconsax-react";
 
-export default function CartButton({ cart }) {
+export default function CartButton({ cart }: { cart: Cart }) {
   return (
     <div className="relative">
       <div

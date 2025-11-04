@@ -2,8 +2,11 @@ import BubbleImage from "@/ui/BubbleImage";
 import LogoImage from "@/ui/LogoImage";
 import MoveBackBtn from "@/ui/MoveBackBtn";
 import AuthBanner from "./_components/AuthBanner";
+import { FC, ReactNode } from "react";
 
-function Layout({ children }) {
+type LayoutProps = { children: ReactNode };
+
+const Layout: FC<LayoutProps> = ({ children }) => {
   return (
     <div className="grid grid-cols-12">
       <div className="col-span-12 lg:col-span-7 relative min-h-screen">
@@ -39,6 +42,6 @@ function Layout({ children }) {
       </div>
     </div>
   );
-}
+};
 
 export default Layout;

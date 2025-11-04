@@ -4,12 +4,16 @@ import { completeProfileApi } from "@/services/authService";
 import Loading from "@/ui/Loading";
 import MoveBackBtn from "@/ui/MoveBackBtn";
 import RHFTextField from "@/ui/RHFTextField";
+import { handleError } from "@/utils/handleError";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
+import { FC } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import * as yup from "yup";
+
+type FormInputs = { name: string; email: string };
 
 const schema = yup
   .object({
@@ -22,14 +26,14 @@ const schema = yup
   })
   .required();
 
-function CompleteProfileForm() {
+const CompleteProfileForm: FC = () => {
   const router = useRouter();
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({
+  } = useForm<FormInputs>({
     resolver: yupResolver(schema),
   });
 
@@ -37,13 +41,13 @@ function CompleteProfileForm() {
     mutationFn: completeProfileApi,
   });
 
-  const onSubmit = async (data) => {
+  const onSubmit = async (data: FormInputs) => {
     try {
       const { message } = await completeProfile(data);
       toast.success(message);
       router.push("/");
     } catch (error) {
-      toast.error(error?.response?.data?.message);
+      handleError(error);
     }
   };
 
@@ -82,6 +86,6 @@ function CompleteProfileForm() {
       </div>
     </div>
   );
-}
+};
 
 export default CompleteProfileForm;

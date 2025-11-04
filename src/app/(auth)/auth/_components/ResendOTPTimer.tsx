@@ -1,13 +1,22 @@
-import { useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react";
+import { FormInputs } from "./AuthContainer";
 
 const RESEND_TIME = 90;
 
-export default function ResendOTPTimer({ otpResponse, onReSendOtp }) {
+type ResendOTPTimerProps = {
+  otpResponse: { phoneNumber: string; message: string };
+  onReSendOtp: (data: FormInputs) => Promise<void>;
+};
+
+const ResendOTPTimer: FC<ResendOTPTimerProps> = ({
+  otpResponse,
+  onReSendOtp,
+}) => {
   const [time, setTime] = useState(RESEND_TIME);
 
   const isTimePositive = time > 0;
-  const timeMinutes = String(Math.trunc(time / 60)).padStart(2, 0);
-  const timeSecond = String(Math.trunc(time % 60)).padStart(2, 0);
+  const timeMinutes = String(Math.trunc(time / 60)).padStart(2, "0");
+  const timeSecond = String(Math.trunc(time % 60)).padStart(2, "0");
 
   useEffect(() => {
     const timer =
@@ -16,7 +25,7 @@ export default function ResendOTPTimer({ otpResponse, onReSendOtp }) {
     return () => {
       if (timer) clearInterval(timer);
     };
-  }, [time]);
+  }, [time, isTimePositive]);
 
   const handleClick = () => {
     onReSendOtp({ phoneNumber: otpResponse?.phoneNumber });
@@ -45,4 +54,6 @@ export default function ResendOTPTimer({ otpResponse, onReSendOtp }) {
       </div>
     </div>
   );
-}
+};
+
+export default ResendOTPTimer;

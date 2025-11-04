@@ -1,8 +1,7 @@
-import { FC } from "react";
 import { FieldValues } from "react-hook-form";
 import { RHFInputProps } from "types/RHFInput";
 
-const RHFTextField: FC<RHFInputProps<FieldValues>> = ({
+export default function RHFTextField<TFieldValues extends FieldValues>({
   type = "text",
   label,
   name,
@@ -13,7 +12,7 @@ const RHFTextField: FC<RHFInputProps<FieldValues>> = ({
   required,
   validationSchema = {},
   ...rest
-}) => {
+}: RHFInputProps<TFieldValues>) {
   const hasError = errors && errors[name];
 
   return (
@@ -40,6 +39,4 @@ const RHFTextField: FC<RHFInputProps<FieldValues>> = ({
       )}
     </div>
   );
-};
-
-export default RHFTextField;
+}

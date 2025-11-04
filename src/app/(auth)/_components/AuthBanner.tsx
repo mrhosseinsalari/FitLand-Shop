@@ -2,8 +2,9 @@ import CustomImage from "@/ui/CustomImage";
 import LogoImage from "@/ui/LogoImage";
 import { Home2 } from "iconsax-react";
 import Link from "next/link";
+import { FC } from "react";
 
-export default function AuthBanner() {
+const AuthBanner: FC = () => {
   return (
     <div className="bg-secondary-850 w-full h-full relative flex justify-center items-center">
       <div className="absolute inset-0 opacity-10">
@@ -26,4 +27,6 @@ export default function AuthBanner() {
       </div>
     </div>
   );
-}
+};
+
+export default AuthBanner;

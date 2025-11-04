@@ -2,12 +2,23 @@ import { checkOtpApi } from "@/services/authService";
 import CustomOtpInput from "@/ui/CustomOtpInput";
 import Loading from "@/ui/Loading";
 import MoveBackBtn from "@/ui/MoveBackBtn";
+import { handleError } from "@/utils/handleError";
 import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { FC, FormEvent, MouseEventHandler, ReactNode, useState } from "react";
 import toast from "react-hot-toast";
 
-export default function CheckOTPForm({ phoneNumber, onBack, children }) {
+type CheckOTPFormProps = {
+  phoneNumber: string;
+  onBack: MouseEventHandler<HTMLButtonElement>;
+  children: ReactNode;
+};
+
+const CheckOTPForm: FC<CheckOTPFormProps> = ({
+  phoneNumber,
+  onBack,
+  children,
+}) => {
   const [otp, setOtp] = useState("");
   const router = useRouter();
 
@@ -15,7 +26,7 @@ export default function CheckOTPForm({ phoneNumber, onBack, children }) {
     mutationFn: checkOtpApi,
   });
 
-  const checkOtpHandler = async (e) => {
+  const checkOtpHandler = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
       const { message, user } = await checkOtp({ phoneNumber, otp });
@@ -27,7 +38,7 @@ export default function CheckOTPForm({ phoneNumber, onBack, children }) {
         router.push("/complete-profile");
       }
     } catch (error) {
-      toast.error(error?.response?.data?.message);
+      handleError(error);
     }
   };
 
@@ -52,4 +63,6 @@ export default function CheckOTPForm({ phoneNumber, onBack, children }) {
       </div>
     </div>
   );
-}
+};
+
+export default CheckOTPForm;

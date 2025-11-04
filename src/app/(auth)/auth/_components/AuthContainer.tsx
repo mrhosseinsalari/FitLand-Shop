@@ -8,8 +8,11 @@ import * as yup from "yup";
 import toast from "react-hot-toast";
 import { useMutation } from "@tanstack/react-query";
 import CheckOTPForm from "./CheckOTPForm";
-import { useState } from "react";
+import { FC, useState } from "react";
 import ResendOTPTimer from "./ResendOTPTimer";
+import { handleError } from "@/utils/handleError";
+
+export type FormInputs = { phoneNumber: string };
 
 const phoneRegExp = /^[0][9][0-9][0-9]{8,8}$/;
 
@@ -17,11 +20,12 @@ const schema = yup
   .object({
     phoneNumber: yup
       .string()
-      .matches(phoneRegExp, "لطفا شماره همراه خود را به صورت صحیح وارد نمایید"),
+      .matches(phoneRegExp, "لطفا شماره همراه خود را به صورت صحیح وارد نمایید")
+      .required("شماره همراه الزامی است"),
   })
   .required();
 
-export default function AuthContainer() {
+const AuthContainer: FC = () => {
   const [step, setStep] = useState(1);
 
   const {
@@ -29,7 +33,7 @@ export default function AuthContainer() {
     handleSubmit,
     getValues,
     formState: { errors },
-  } = useForm({
+  } = useForm<FormInputs>({
     resolver: yupResolver(schema),
   });
 
@@ -41,13 +45,13 @@ export default function AuthContainer() {
     mutationFn: getOtpApi,
   });
 
-  const sendOtpHandler = async (data) => {
+  const sendOtpHandler = async (data: FormInputs) => {
     try {
       const { message } = await getOtp(data);
       toast.success(message);
       setStep(2);
     } catch (error) {
-      toast.error(error?.response?.data?.message);
+      handleError(error)
     }
   };
 
@@ -80,4 +84,6 @@ export default function AuthContainer() {
   };
 
   return renderSteps();
-}
+};
+
+export default AuthContainer;

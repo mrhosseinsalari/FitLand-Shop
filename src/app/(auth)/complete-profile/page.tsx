@@ -1,11 +1,12 @@
+import { FC } from "react";
 import CompleteProfileForm from "./_components/CompleteProfileForm";
 
 export const metadata = {
   title: "تکمیل اطلاعات",
 };
 
-function CompleteProfilePage() {
+const CompleteProfilePage: FC = () => {
   return <CompleteProfileForm />;
-}
+};
 
 export default CompleteProfilePage;

@@ -1,12 +1,22 @@
 import Loading from "@/ui/Loading";
 import RHFTextField from "@/ui/RHFTextField";
+import { FieldErrors, UseFormRegister } from "react-hook-form";
+import { FormInputs } from "./AuthContainer";
+import { FC } from "react";
 
-export default function SendOTPForm({
+type SendOTPFormProps = {
+  onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+  register: UseFormRegister<FormInputs>;
+  errors: FieldErrors<FormInputs>;
+  isSendingOtp: boolean;
+};
+
+const SendOTPForm: FC<SendOTPFormProps> = ({
   onSubmit,
   register,
   errors,
   isSendingOtp,
-}) {
+}) => {
   return (
     <div>
       <h2 className="authForm__title">ورود | ثبت‌نام</h2>
@@ -28,4 +38,6 @@ export default function SendOTPForm({
       </form>
     </div>
   );
-}
+};
+
+export default SendOTPForm;
